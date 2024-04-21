@@ -1,51 +1,72 @@
-
 #include <iostream>
 #include <string>
 
 using namespace std;
 
 class Transport {
-private:
-    string color;
-    int speed; 
+protected:
+    int speed;
 
 public:
-    Transport() : speed(0), color("") {}
-    Transport(int speed, string color) : speed(speed), color(color) {}
+    Transport() : speed(0) {} 
 
-    int getSpeed() { return speed; } 
-    void setSpeed(int speed) { this->speed = speed; }
+    void turn() {
+        cout << "Transport is turning" << endl;
+    }
 
-    string getColor() { return color; }
-    void setColor(string color) { this->color = color; }
+    void drive() {
+        cout << "Transport is driving" << endl;
+    }
 
-    void displaySpeed() { cout << "Speed is: " << speed << endl; } 
+    void stop() {
+        cout << "Transport is stopping" << endl;
+    }
 };
-
 
 class Bicycle : public Transport {
 private:
     string model;
     int year;
+    string color;
 
 public:
-    Bicycle() : Transport(), model(""), year(0) {}
-    Bicycle(string model, int year, int speed, string color) : Transport(speed, color), model(model), year(year) {}
+    Bicycle(string model, int year, string color) : model(model), year(year), color(color) {}
 
-    string getModel() { return model; }
-    void setModel(string model) { this->model = model; }
+    string getModel() {
+        return model;
+    }
 
-    int getYear() { return year; }
-    void setYear(int year) { this->year = year; }
+    void setModel(string model) {
+        this->model = model;
+    }
 
-    void pedal() { cout << "Pedaling..." << endl; }
+    int getYear() {
+        return year;
+    }
+
+    void setYear(int year) {
+        this->year = year;
+    }
+
+    string getColor() {
+        return color;
+    }
+
+    void setColor(string color) {
+        this->color = color;
+    }
 };
 
 int main() {
-    Bicycle myBicycle("Mountain Bike", 2020, 90, "Red");
-    myBicycle.displaySpeed(); 
-    myBicycle.pedal();
+    Bicycle bike("BMX", 2023, "grey");
+
+    cout << "Model: " << bike.getModel() << endl;
+    cout << "Year: " << bike.getYear() << endl;
+    cout << "Color: " << bike.getColor() << endl;
+
+    bike.drive();
+    bike.turn();
+    bike.stop();
 
     return 0;
 }
-
